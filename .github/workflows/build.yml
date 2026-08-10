@@ -22,7 +22,7 @@ jobs:
         run: cargo build --release --bin coomi
 
       - name: Cross-compile aarch64 static binary
-        uses: taiki-e/setup-musl@v1
+        uses: taiki-e/setup-musl-action@v1
         with:
           target: aarch64-unknown-linux-musl
 
