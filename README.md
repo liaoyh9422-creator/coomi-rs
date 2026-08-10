@@ -1,6 +1,8 @@
 # Coomi Rust
 
-Coomi is a compact terminal coding agent organized as six workspace layers.
+Coomi is the Rust agent engine extracted from
+[Coomi-Android](https://github.com/TensorHub-ORG/Coomi-Android). It is a compact
+terminal coding agent organized as six workspace layers.
 
 | Layer | Responsibility |
 | --- | --- |
@@ -138,3 +140,11 @@ The default `workspace-write` policy allows file edits inside the selected
 working directory and asks before arbitrary shell commands. `read-only` blocks
 writes; `full-access` expands the path boundary but still asks before commands
 recognized as destructive unless `--yes` is explicitly supplied.
+
+## Upstream and license
+
+This repository contains the `coomi` Rust agent engine extracted from
+[Coomi-Android](https://github.com/TensorHub-ORG/Coomi-Android). It is
+distributed under the [Apache License 2.0](LICENSE).
+
+Copyright 2026 Septemc and TensorHub.
