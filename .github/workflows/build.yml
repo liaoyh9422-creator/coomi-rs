@@ -22,14 +22,15 @@ jobs:
         run: cargo build --release --bin coomi
 
       - name: Cross-compile aarch64 static binary
-        uses: taiki-e/setup-musl-action@v1
-        with:
-          target: aarch64-unknown-linux-musl
+        uses: goto-bus-stop/setup-zig@v2
+
+      - name: Install cargo-zigbuild
+        run: cargo install cargo-zigbuild
 
       - name: Build aarch64 static binary
         run: |
           rustup target add aarch64-unknown-linux-musl
-          cargo build --release --target aarch64-unknown-linux-musl --bin coomi
+          cargo zigbuild --release --target aarch64-unknown-linux-musl --bin coomi
 
       - name: Upload artifacts
         uses: actions/upload-artifact@v4
