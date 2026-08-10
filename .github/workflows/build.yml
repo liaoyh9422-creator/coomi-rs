@@ -1,0 +1,35 @@
+name: build
+
+on:
+  push:
+    branches: [master]
+  pull_request:
+    branches: [master]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install Rust (rust-toolchain.toml)
+        run: |
+          rustup set profile minimal
+          rustup toolchain install 1.95.0
+          rustup default 1.95.0
+
+      - name: Build release binary
+        run: cargo build --release --bin coomi
+
+      - name: Cross-compile aarch64 static binary
+        run: |
+          rustup target add aarch64-unknown-linux-musl
+          cargo build --release --target aarch64-unknown-linux-musl --bin coomi
+
+      - name: Upload artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: coomi-binaries
+          path: |
+            target/release/coomi
+            target/aarch64-unknown-linux-musl/release/coomi
