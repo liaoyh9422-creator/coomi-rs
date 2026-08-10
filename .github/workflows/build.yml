@@ -23,6 +23,8 @@ jobs:
 
       - name: Cross-compile aarch64 static binary
         run: |
+          sudo apt-get update
+          sudo apt-get install -y musl-tools
           rustup target add aarch64-unknown-linux-musl
           cargo build --release --target aarch64-unknown-linux-musl --bin coomi
 
